@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+[ -n "$1" ] || exit 2
+
+repository=/tmp/aube
+mkdir -p "$repository"
+
+# TODO: better nonce
+nonce=$(date --utc -Iseconds | sed -E -e 's/[:-]//g' -e 's/\+[0-9]{4}$/Z/')
+dirname="${1##*/}-$nonce"
+
+# TODO: check does not exist
+cp -r "$1" "$repository/$dirname"
+cd "$repository/$dirname"
+echo "template: $1" > .aube
