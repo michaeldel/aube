@@ -1,0 +1,3 @@
+runserver:
+	python app.py
+
